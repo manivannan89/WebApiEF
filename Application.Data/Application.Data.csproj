@@ -54,6 +54,8 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -72,6 +74,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="Emp.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Emp.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Emp.edmx.diagram">
+      <DependentUpon>Emp.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -81,10 +90,41 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Emp.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Emp.edmx</DependentUpon>
+      <LastGenOutput>Emp.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Emp.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Emp.edmx</DependentUpon>
+      <LastGenOutput>Emp.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Emp.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Emp.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Emp.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Emp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Emp.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Emp.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EMP_DETAILS.cs">
+      <DependentUpon>Emp.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
